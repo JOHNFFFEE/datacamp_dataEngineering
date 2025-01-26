@@ -1,0 +1,30 @@
+version: "1.0"
+
+services:
+  pgdatabase:
+    image: postgres:17-alpine
+    container_name: pg-database
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ny_taxi
+    volumes:
+      - /c/Users/Dori3n/Desktop/datat-engineering-zoomcamp/week_1_basics_n_setup/2_docker_sql/ny_taxi_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    # networks:
+    #   - pg-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pg-database2
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "8080:80"
+    # networks:
+    #   - pg-network
+# networks:
+#   pg-network:
+#     driver: bridge
