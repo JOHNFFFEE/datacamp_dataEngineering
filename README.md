@@ -1,0 +1,1 @@
+This repository contains homework assignments from DataCamp. Data Engineering Zoomcamp
