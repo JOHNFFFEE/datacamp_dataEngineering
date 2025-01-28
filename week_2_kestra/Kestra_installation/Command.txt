@@ -1,0 +1,5 @@
+docker compose build
+docker compose up
+
+
+go to localhost:8080
