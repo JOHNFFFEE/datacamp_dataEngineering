@@ -1,5 +1,3 @@
-Here's a polished and visually appealing README for your GitHub repository:
-
 📚 Data Engineering Zoomcamp - Homework Assignments
 Welcome to the Data Engineering Zoomcamp - Homework Assignments repository! 🚀 This repository contains my completed homework assignments from the Data Engineering Zoomcamp, offered by DataTalks.Club.
 
