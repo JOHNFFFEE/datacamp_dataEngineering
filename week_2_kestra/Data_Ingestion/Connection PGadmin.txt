@@ -1,0 +1,22 @@
+docker compose this file and kestra file
+
+Testing the Connection
+Open pgAdmin in your browser: http://localhost:5050.
+
+Log in with the credentials:
+
+Email: admin@example.com
+
+Password: admin
+
+Add a new server with the updated connection settings:
+
+Host: db
+
+Port: 5432
+
+Username: myuser
+
+Password: mypassword
+
+Test the connection. It should now work.
