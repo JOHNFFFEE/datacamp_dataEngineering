@@ -1,0 +1,11 @@
+
+
+
+queries
+
+
+
+
+SELECT count(*)   FROM public.green_tripdata   
+where SUBSTRING(filename, 16, 4) = '2020'
+
