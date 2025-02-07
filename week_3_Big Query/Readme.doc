@@ -1,0 +1,42 @@
+1. if you want to load all the files in bucket you should choose bucket, and instead of the name file insert *  (gs/bucket_name/*.ending)
+i.e - intead of nyc_yellow_taxi2025/yellow_tripdata_2024-01.parquet   --> nyc_yellow_taxi2025/*.parquet  it will upload all files at once
+
+2. in Big Query - COUNT(*) does not need to read all columns, BigQuery only scans metadata, reducing the bytes read, this methods gives you the estimations
+
+📊 Estimated Bytes Read
+If your table is partitioned and clustered, the estimated bytes read should be minimal (around a few KBs to MBs).
+If your table is not optimized (not partitioned), BigQuery will scan all rows, which could be GBs or even TBs of data.
+
+Clustering can improve performance and reduce costs, but it is not always necessary. The decision to cluster depends on:
+
+Query Patterns
+
+Clustering is useful only if queries frequently filter or sort by the clustered column.
+If queries do not filter or order by the clustered column, clustering provides no benefit.
+Table Size
+
+Clustering is most effective for large tables (hundreds of GBs or more).
+For small tables, clustering has little to no impact because BigQuery can scan the entire table quickly.
+Partitioning vs. Clustering
+
+Partitioning should be the first optimization choice if queries frequently filter by date/time or categorical values.
+Clustering works best within partitions, helping to organize data efficiently.
+✅ When to Cluster?
+✔️ If queries frequently filter or sort by a specific column (e.g., VendorID in a partitioned taxi dataset).
+✔️ If the table is large, and clustering reduces the amount of data scanned.
+
+❌ When NOT to Cluster?
+❌ If queries do not filter or sort by the clustered column.
+❌ If the table is small (clustering has no significant impact).
+
+When you create an External Table in BigQuery, the data remains stored in a Google Cloud Storage (GCP Bucket).
+ BigQuery only reads the data from the bucket instead of storing it internally.
+
+
+✅ BigQuery is a columnar database, and it only scans the specific columns requested in the query. Querying two columns (PULocationID, DOLocationID) requires reading more data than querying one column (PULocationID), leading to a higher estimated number of bytes processed.
+
+Explanation:
+BigQuery stores data in a columnar format, meaning each column is stored separately.
+When you query only PULocationID, BigQuery scans only the storage blocks containing that column.
+When you add DOLocationID, BigQuery must also scan the storage blocks for that column, increasing the amount of data processed.
+The increase in estimated bytes processed depends on the size and compression of each column.
